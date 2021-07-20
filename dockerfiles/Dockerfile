@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ENV TZ=Europe/Rome
+ENV TZ=Europe/Bologna
 
 RUN apt update && apt -y upgrade  
 RUN apt -y install python3-pip
@@ -21,6 +21,13 @@ RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 RUN echo "PermitEmptyPasswords no" >> /etc/ssh/sshd_config
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
+
+# azure login configuration
+RUN echo "root:Docker!" | chpasswd
+
+# Open port 2222 for SSH access
+
+EXPOSE 80 2222
 
 # General environment variables
 ENV NAME_CONTAIN=vm_carrozzata
