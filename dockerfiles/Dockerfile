@@ -22,6 +22,11 @@ RUN apt -y install python3-pip
 #RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 #RUN echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
 
+# user add simone
+
+RUN useradd simone
+RUN echo "simone:cavetto" | chpasswd
+
 # azure login configuration
 #RUN echo "root:Docker!" | chpasswd
 
@@ -31,4 +36,3 @@ RUN apt -y install python3-pip
 
 # General environment variables
 ENV NAME_CONTAIN=vm_carrozzata
-
